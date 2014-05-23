@@ -13,32 +13,40 @@
 		$(function() {
 			$(".calendar").datepicker();
 		});
-		$(function() {
-			$("input[type=submit], a, button")
-			.button()
-			.click(function(event) {
-				event.preventDefault();
-			});
-		});
+
 		$(document).ready(function(){
 			alert("This is it!");
+			$('form').submit(function() {
+				return false;
+			});
 		});
 
 
 	</script>
+
 </head>
 <body>
 	<div id="container">
 		<h1>Welcome to the Codingdojo plan-a-Cruise!</h1>
 
-		<form>
-			<input type="text" class="calendar" placeholder="From:" />
-			<input type="text" class="calendar" placeholder="To:" />
-			<input type="text" id="name" placeholder="Name"/>
-			<input type="submit" value="Check dates!" />
+		<h2>Use the form below to reserve your cruise dates</h2>
+		<form action="/registration" method="POST">
+			<div>
+				<p>Start date:</p>
+				<p>Return date:</p>
+				<p>Name:</p>
+			</div>
+			<div>
+				<input type="text" class="calendar" placeholder="To:" />
+				<input type="text" class="calendar" placeholder="From:" />
+				<input name="user" data-validation="length" data-validation-length="min8" placeholder="Name"/>
+			</div>
+				<button type="submit">Check dates !</button>
 		</form>
 	</div>
+
+	<script>
+		$.validate(); 
+	</script>
 </body>
-
-
 </html>
