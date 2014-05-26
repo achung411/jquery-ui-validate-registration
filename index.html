@@ -8,45 +8,54 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$(".calendar").datepicker();
 		});
 
 		$(document).ready(function(){
-			alert("This is it!");
-			$('form').submit(function() {
+
+			$('button').click(function() {
+				var startDate = $("#start").datepicker("getDate");
+				var endDate = $("#return").datepicker("getDate");
+				var name = $("#userName").val();
+
+				if (startDate === null) {
+					$("#right").text("You need to select a departure date.");
+				} else if (endDate === null) {
+					$("#right").text("You need to select a return date.");
+				} else if (startDate >= endDate) {
+					$("#right").text("Those dates are invalid.  Please re-select your dates of travel.");
+				} else if (name === "") {
+					$("#right").text("Please enter your name.");
+				} else {
+					$("#right").text(" ");
+					alert ("Hi " + name + ". Your reservations have been confirmed.  You depart on " + startDate.toDateString() + " and will return on " + endDate.toDateString() + ". We hope you enjoy your cruise!");
+				}
 				return false;
 			});
 		});
-
-
 	</script>
-
 </head>
 <body>
 	<div id="container">
 		<h1>Welcome to the Codingdojo plan-a-Cruise!</h1>
-
 		<h2>Use the form below to reserve your cruise dates</h2>
-		<form action="/registration" method="POST">
+		<div id="left">
+			<p>Start date:</p>
+			<p>Return date:</p>
+			<p>Name:</p>
+		</div>
+		<form action="" method="post">
 			<div>
-				<p>Start date:</p>
-				<p>Return date:</p>
-				<p>Name:</p>
+				<input id="start" type="text" name="start" class="calendar" placeholder="To:" />
+				<input id="return" type="text" name="return" class="calendar" placeholder="From:" />
+				<input id="userName" name="user" placeholder="Name"/>
 			</div>
-			<div>
-				<input type="text" class="calendar" placeholder="To:" />
-				<input type="text" class="calendar" placeholder="From:" />
-				<input name="user" data-validation="length" data-validation-length="min8" placeholder="Name"/>
-			</div>
-				<button type="submit">Check dates !</button>
+				<button>Check dates !</button>
 		</form>
+		<div id="right">
+		</div>
 	</div>
-
-	<script>
-		$.validate(); 
-	</script>
 </body>
 </html>

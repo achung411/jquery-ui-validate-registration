@@ -1,28 +1,46 @@
+body {
+}
+
 #container {
 	font-family: Garamond;
 }
-	
 
-	form div {
+div, form {
+	display: inline-block;
+}
+
+	#left {
 		width: 200px;
-		display: inline-block;
-		border: 1px green solid;
-		vertical-align: top;
-	}
-
-	form p {
 		text-align: right;
+		padding-top: 4px;
+		line-height: 1.2;
+	}	
+
+	form {
+		width: 200px;
+		vertical-align: top;
+		padding: 0 10px;
 	}
 
-	input {
-		display: block;
-		margin: 15px;
+		input {
+			display: block;
+			margin: 15px;
+		}
+
+		button {
+			color: white;
+			border-radius: 8px;
+			background-color: blue;
+			margin-left: 15px;
+			padding: 5px;
+			display: block;
+		}
+
+	#right {
+		vertical-align: top;
+		color: red;
+		font-size: .9em;
+		padding-top: 20px;
+	}
+
 	
-	}
-
-	button {
-		color: white;
-		background-color: blue;
-		padding: 5px;
-		display: inline-block;
-	}
